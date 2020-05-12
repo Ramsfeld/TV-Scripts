@@ -1,0 +1,30 @@
+//@version=3
+study("RSI MA", shorttitle="RSI MA", overlay=false)
+src = close, len = input(7, minval=1, title="Length")
+up = rma(max(change(src), 0), len)
+down = rma(-min(change(src), 0), len)
+rsi = down == 0 ? 100 : up == 0 ? 0 : 100 - (100 / (1 + up / down))
+
+basis = rsi(close, input(7))
+
+ma1 = rma(basis, input(1))
+ma2 = rma(basis, input(7))
+ma3 = rma(basis, input(14))
+ma4 = rma(basis, input(21))
+ma5 = rma(basis, input(4))
+
+plot(ma1, title="RSI SMA1", style=line, color=purple)
+plot(ma2, title="RSI SMA2", style=line, color=orange)
+plot(ma3, title="RSI SMA3", style=line, color=white)
+plot(ma4, title="RSI SMA4", style=line, color=green)
+
+h0 = hline(75)
+h1 = hline(25)
+fill(h0, h1, color=purple, transp=90)
+h2 = hline(50)
+
+malong = crossover(ma1,ma2)
+maclose = crossunder(ma1,ma2)
+
+plotshape(malong, title="rsiup", style=shape.arrowup, location=location.bottom, color=green, size=size.small)
+plotshape(maclose, title="rsidown", style=shape.arrowdown, location=location.bottom, color=red, size=size.small)
