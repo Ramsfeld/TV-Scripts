@@ -1,0 +1,20 @@
+study(title="Mega RSI", shorttitle="Mega RSI ")
+
+i1 = 120
+i2 = i1 + 120
+
+rsi_length=input(14, title="RSI Length")
+rsi_mom_length=input(9, title="RSI Momentum Length")
+rsi_ma_length=input(3, title="RSI MA Length")
+ma_length=input(3, title="SMA Length")
+fastLength=input(13)
+slowLength=input(33)
+
+r=rsi(close, rsi_length)
+rsidelta = mom(r, rsi_mom_length)
+rsisma = sma(rsi(close, rsi_ma_length), ma_length)
+s=rsidelta+rsisma
+
+plot(s / 2 + i1, color=red, linewidth=2)
+plot(sma(s, fastLength) / 2 + i1, color=green)
+plot(sma(s, slowLength) / 2 + i1, color=red)
