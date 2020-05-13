@@ -1,4 +1,4 @@
-study(title="Mega RSI", shorttitle="Mega RSI")
+study(title="doubleRSI", shorttitle="double RSI")
 
 i1 = 120
 i2 = i1 + 120
