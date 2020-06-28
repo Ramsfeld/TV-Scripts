@@ -1,4 +1,4 @@
-study(title="Mega RSI", shorttitle="Mega RSI ")
+study(title="T_RSI", shorttitle="T-RSI ")
 
 i1 = 120
 i2 = i1 + 120
@@ -16,5 +16,5 @@ rsisma = sma(rsi(close, rsi_ma_length), ma_length)
 s=rsidelta+rsisma
 
 plot(s / 2 + i1, color=red, linewidth=2)
-plot(sma(s, fastLength) / 2 + i1, color=green)
-plot(sma(s, slowLength) / 2 + i1, color=red)
+plot(sma(s, fastLength) / 2 + i1, color=black)
+plot(sma(s, slowLength) / 2 + i1, color=blue)
